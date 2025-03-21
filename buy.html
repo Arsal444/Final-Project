@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Grill Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body id="buy">
+    <!-- Header Section -->
+    <header id="head">
+        <nav id="nav">
+            <div class="logo">
+                <img src="logo.png" alt="Restaurant Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="\index.html">Home</a></li>
+                <li><a href="\product.html">Product</a></li>
+                
+                <li><a href="#about">About</a></li>
+                <li><a href="\contact.html">Contact</a></li>
+            </ul>
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-content">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button class="close-search" onclick="closeSearch()">×</button>
+        </div>
+    </div>
+
+    <section class="buy-now-section">
+        <h2>Complete Your Order</h2>
+        <form id="orderForm">
+            <label for="product">Select Product:</label>
+            <select id="product" name="product" required>
+                <option value="Grilled Chicken">Grilled Chicken</option>
+                <option value="Spicy Wings">Spicy Wings</option>
+                <option value="BBQ Platter">BBQ Platter</option>
+                <option value="Cheesy Burger">Cheesy Burger</option>
+            </select>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" placeholder="Enter your delivery address" required></textarea>
+
+            <label for="payment">Payment Method:</label>
+            <select id="payment" name="payment" required>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+            </select>
+
+            <button type="submit" class="order-btn">Place Order</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FOLLOW US</h3>
+                <p>Bringing you the best grilled chicken dishes since 1995.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Brand Guidelines</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">How to Order</a></li>
+                    <li><a href="#">Our Product</a></li>
+                    <li><a href="#">Order Status</a></li>
+                    <li><a href="#">Promo</a></li>
+                    <li><a href="#">Payment Method</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        // Add click event listener to each link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Remove active class from all links
+                navLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Get the href attribute
+                const href = this.getAttribute('href');
+                
+                // Only handle same-page links (those starting with #)
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+                // For external links (like product.html), let the default behavior happen
+            });
+        });
+
+        // Add scroll event listener to highlight current section
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get the selected product and quantity
+        const product = document.getElementById("product").value;
+        const quantity = document.getElementById("quantity").value;
+        const name = document.getElementById("name").value;
+
+        // Show an alert with order details
+        alert(`Thank you, ${name}! Your order for ${quantity} x ${product} has been placed successfully.`);
+
+        // Reset form after submission
+        this.reset();
+    });
+    </script>
+</body>
+</html>

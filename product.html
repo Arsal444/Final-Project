@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Grill Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Restaurant Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="\index.html">Home</a></li>
+                <li><a href="\product.html">Product</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="\contact.html">Contact</a></li>
+            </ul>
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-content">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button class="close-search" onclick="closeSearch()">×</button>
+        </div>
+    </div>
+
+    <section class="product-section">
+        <h2>Our Menu</h2>
+        <div class="product-container">
+            <div class="product-card">
+                <img src="dish1.jpg" alt="Grilled Chicken">
+                <h3>Grilled Chicken</h3>
+                <p>Perfectly grilled chicken with savory spices.</p>
+                <button class="cart-btn">Add to Cart</button>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="dish 3.jpg" alt="Spicy Wings">
+                <h3>Spicy Wings</h3>
+                <p>Hot and crispy chicken wings to tantalize your taste buds.</p>
+                <button class="cart-btn">Add to Cart</button>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="dish 4.jpg" alt="BBQ Platter">
+                <h3>BBQ Platter</h3>
+                <p>A combination of our finest barbecue offerings.</p>
+                <button class="cart-btn">Add to Cart</button>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="dish 2.jpg" alt="Cheesy Burger">
+                <h3>Cheesy Burger</h3>
+                <p>Juicy beef patty with melted cheese and fresh toppings.</p>
+                <button class="cart-btn">Add to Cart</button>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+        </div>
+        <div class="product-container">
+            <div class="product-card">
+                <img src="dish1.jpg" alt="Grilled Chicken">
+                <h3>Grilled Chicken</h3>
+                <p>Perfectly grilled chicken with savory spices.</p>
+                <button class="cart-btn">Add to Cart</button>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="dish 3.jpg" alt="Spicy Wings">
+                <h3>Spicy Wings</h3>
+                <p>Hot and crispy chicken wings to tantalize your taste buds.</p>
+                <button class="cart-btn">Add to Cart</button>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="dish 4.jpg" alt="BBQ Platter">
+                <h3>BBQ Platter</h3>
+                <p>A combination of our finest barbecue offerings.</p>
+                <button class="cart-btn">Add to Cart</button>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="dish 2.jpg" alt="Cheesy Burger">
+                <h3>Cheesy Burger</h3>
+                <p>Juicy beef patty with melted cheese and fresh toppings.</p>
+                <button class="cart-btn">Add to Cart</button>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FOLLOW US</h3>
+                <p>Bringing you the best grilled chicken dishes since 1995.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Brand Guidelines</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">How to Order</a></li>
+                    <li><a href="#">Our Product</a></li>
+                    <li><a href="#">Order Status</a></li>
+                    <li><a href="#">Promo</a></li>
+                    <li><a href="#">Payment Method</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        // Add click event listener to each link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Remove active class from all links
+                navLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Get the href attribute
+                const href = this.getAttribute('href');
+                
+                // Only handle same-page links (those starting with #)
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+                // For external links (like product.html), let the default behavior happen
+            });
+        });
+
+        // Add scroll event listener to highlight current section
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+        // Select all "Add to Cart" buttons
+        const cartButtons = document.querySelectorAll(".cart-btn");
+
+        // Add event listener to each "Add to Cart" button
+        cartButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                alert("Item has been added to cart!");
+            });
+        });
+
+        // Select all "Buy Now" buttons
+        const buyButtons = document.querySelectorAll(".buy-btn");
+
+        // Add event listener to each "Buy Now" button
+        buyButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                window.location.href = "buy.html"; // Change this to your actual buy page
+            });
+        });
+    });
+    </script>
+</body>
+</html>

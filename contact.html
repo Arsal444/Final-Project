@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Grill Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Restaurant Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="\index.html">Home</a></li>
+                <li><a href="\product.html">Product</a></li>
+             
+                <li><a href="about.html">About</a></li>
+                <li><a href="\contact.html">Contact</a></li>
+            </ul>
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-content">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button class="close-search" onclick="closeSearch()">×</button>
+        </div>
+    </div>
+
+                 
+    <section class="contact">
+        <div class="container">
+            <h2 class="text-center">Get in touch</h2>
+            <div class="heading-border"></div>
+
+            <form action="" class="form">
+                <fieldset>
+                    <legend>Contact Us</legend>
+                    <p class="label">Full Name</p>
+                    <input type="text" placeholder="Enter your name..." required>
+                    <p class="label">Email</p>
+                    <input type="email" placeholder="Enter your email..." required>
+                    <p class="label">Phone Number</p>
+                    <input type="contact" placeholder="Enter your phone..." required>
+                    <p class="label">Subject</p>
+                    <input type="text" placeholder="Enter your subject..." required>
+                    <p class="label">Message</p>
+                    <textarea name="" id="" rows="5" placeholder="Enter your message..." required></textarea>
+                    <input type="submit" value="Submit" class="btn-primary">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FOLLOW US</h3>
+                <p>Bringing you the best grilled chicken dishes since 1995.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Brand Guidelines</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">How to Order</a></li>
+                    <li><a href="#">Our Product</a></li>
+                    <li><a href="#">Order Status</a></li>
+                    <li><a href="#">Promo</a></li>
+                    <li><a href="#">Payment Method</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        // Add click event listener to each link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Remove active class from all links
+                navLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Get the href attribute
+                const href = this.getAttribute('href');
+                
+                // Only handle same-page links (those starting with #)
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+                // For external links (like product.html), let the default behavior happen
+            });
+        });
+
+        // Add scroll event listener to highlight current section
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+        // Select the contact form
+        const contactForm = document.querySelector(".form");
+
+        // Add event listener to the form submit event
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent page refresh
+
+            // Show an alert message
+            alert("Your message has been sent successfully!");
+
+            // Reset the form after submission
+            contactForm.reset();
+        });
+    });
+    </script>
+</body>
+</html>
+   
+   
